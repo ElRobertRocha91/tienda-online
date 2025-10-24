@@ -1,0 +1,46 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: rgb(255, 254, 254);
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+    border: solid 5px #0b0d0d;
+    border-top: solid 5px #949a9b;
+    border-radius: 50%;
+    /* Definimos la animación, el lapso de tiempo y la forma */
+    animation: loader .8s linear infinite;
+}
+
+/* Animación 2D */
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.message {
+    position: absolute;
+    color: #222323;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -120%);
+    animation: message 1s alternate infinite ease-in-out;
+}
+
+/* @keyframes message {
+    0% {
+        opacity: .2;
+    }
+    100% {
+        opacity: 1;
+    }
+} */

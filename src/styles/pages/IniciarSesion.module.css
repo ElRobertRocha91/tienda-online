@@ -1,0 +1,32 @@
+.pageFormulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.tarjetaFormulario {
+    padding: 20px;
+    border: solid 2px black;
+    border-radius: 15px;
+    
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 200px;
+    width: 400px;
+}
+
+.cajaBoton {
+    display: flex;
+    justify-content: center;
+}
+
+.cajaBoton button {
+    margin-left: 20px;
+    margin-right: 20px;
+}

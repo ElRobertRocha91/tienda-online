@@ -1,0 +1,19 @@
+.lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    width: 100%;
+    padding-left: 0px;
+}
+
+.item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    background-color: black;
+}

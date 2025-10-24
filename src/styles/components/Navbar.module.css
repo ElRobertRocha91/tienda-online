@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 20px;
+    background-color: black;
+}
+
+.title {
+    color: #fff;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.nav li {
+    list-style: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}

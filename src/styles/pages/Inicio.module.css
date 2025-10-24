@@ -1,0 +1,28 @@
+.home {
+    height: 95vh;
+    /* background-color: brown; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border-radius: 15px;
+    border: solid 3px black;
+    padding: 25px;
+    font-size: 25px;
+}
+
+.homeLink {
+    background-color: black;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.homeLink:hover {
+    background-color: #fff;
+    color: black;
+    border: solid 3px black;
+}

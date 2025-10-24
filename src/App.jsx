@@ -1,33 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route } from 'react-router-dom'
+import Inicio from './pages/Inicio'
+import Productos from './pages/Productos'
+import DetalleProducto from './pages/DetalleProducto'
+import RutaProtegida from './pages/RutaProtegida'
+import IniciarSesion from './pages/IniciarSesion'
+import Pagar from './pages/Pagar'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [usuario, setUsuario] = useState({ nombre: "", email: "" });
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Inicio />} />
+        <Route path='/productos' element={<Productos />} />
+        <Route path='/productos/:id' element={<DetalleProducto />} />
+        <Route path='/iniciar-sesion' element={<IniciarSesion setIsAuthenticated={setIsAuthenticated} setUsuario={setUsuario} />} />
+        <Route path='/usuario/pagar'
+          element={
+            <RutaProtegida isAuthenticated={isAuthenticated}>
+              <Pagar
+                setIsAuthenticated={setIsAuthenticated}
+                setUsuario={setUsuario}
+                usuario={usuario}
+              />
+            </RutaProtegida>
+          }
+        />
+      </Routes>
+      <Footer />
     </>
   )
 }
