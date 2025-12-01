@@ -21,6 +21,7 @@ function App() {
         <Route path='/' element={<Inicio />} />
         <Route path='/productos' element={<Productos />} />
         <Route path='/productos/:id' element={<DetalleProducto />} />
+        <Route path='/productos/:categoria/:id' element={<DetalleProducto />} />
         <Route path='/iniciar-sesion' element={<IniciarSesion setIsAuthenticated={setIsAuthenticated} setUsuario={setUsuario} />} />
         <Route path='/usuario/pagar'
           element={

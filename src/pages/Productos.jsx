@@ -55,7 +55,7 @@ function Productos() {
                         Precio: ${producto.precio}
                         <br />
                         <button className={styles.link}>
-                            <Link to={`/productos/${producto.id}`} state={{ producto }}>Más detalle</Link>
+                            <Link to={`/productos/${producto.categoria || "sin-categoria"}/${producto.id}`} state={{ producto }}>Más detalle</Link>
                         </button>
                         <br />
                         <button onClick={() => agregarAlCarrito(producto)}>Comprar</button>
