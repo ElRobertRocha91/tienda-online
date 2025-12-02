@@ -1,0 +1,33 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+
+.acciones {
+    display: flex;
+}
+
+
+.link{
+    padding: 5px 10px;
+}
+
+.verde {
+background-color: green;
+padding: 5px;
+border-radius: 5px;
+margin: 0 0;
+}
+
+.celeste {
+background-color: rgb(77, 187, 190);
+padding: 5px;
+border-radius: 5px;
+}
+
+.rojo {
+background-color: red;
+}
