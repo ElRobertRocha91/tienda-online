@@ -1,28 +1,34 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 import styles from "../styles/pages/IniciarSesion.module.css";
 
-function IniciarSesion({ setIsAuthenticated, setUsuario }) {
+function IniciarSesion() {
+    const { iniciarSesion } = useAuthContext();
     const navigate = useNavigate();
     const ubicacion = useLocation();
 
     const [formulario, setFormulario] = useState({ nombre: '', email: '' });
 
-
     const manejarEnvio = (e) => {
         e.preventDefault();
-        if (formulario.nombre && formulario.email) {
-            setIsAuthenticated(true);
-            setUsuario(formulario);
+        if (formulario.nombre === "admin" && formulario.email === "1234@admin") {
+            localStorage.setItem("authEmail", formulario.email);
+            iniciarSesion("admin");
+            navigate("/dashboard");
 
+        } else if (formulario.nombre && formulario.email && formulario.nombre !== "admin") {
+            localStorage.setItem("authEmail", formulario.email);
+            iniciarSesion(formulario.nombre);
             // Si venía del carrito, redirige a pagar
             if (ubicacion.state?.carrito) {
-                navigate('/pagar', { state: { carrito: ubicacion.state.carrito } });
+                navigate('/usuario/pagar', { state: { carrito: ubicacion.state.carrito } });
             } else {
                 navigate('/productos');
             }
+
         } else {
-            alert('Completa todos los datos');
+            alert('Credenciales de administrador incorrectas. Usa: admin / 1234@admin');
         }
     };
 

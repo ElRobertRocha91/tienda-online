@@ -1,10 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
-function Pagar({
-  setIsAuthenticated,
-  usuario,
-  setUsuario,
-}) {
+function Pagar() {
+  const { usuario, cerrarSesion } = useAuthContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,16 +14,12 @@ function Pagar({
     0
   );
 
+  const tokenActual = localStorage.getItem('authToken');
+
   // Función para finalizar compra
   const comprar = () => {
     alert("¡Compra realizada con éxito!");
     navigate("/productos");
-  };
-
-  // Función para cerrar sesión
-  const cerrarSesion = () => {
-    setIsAuthenticated(false);
-    setUsuario({ nombre: "", email: "" });
   };
 
   return (
