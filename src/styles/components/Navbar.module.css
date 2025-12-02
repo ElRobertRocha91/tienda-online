@@ -22,3 +22,26 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.usuario {
+    display: flex;
+    color: #fff;
+    padding-left: 3px;
+    padding-right: 20px;
+    /* padding: 0 20px; */
+}
+
+.session {
+    /* padding: alto ancho ;*/
+    padding: 5px 6px;
+}
+
+.dashboard {
+    padding-left: 25px;
+}
