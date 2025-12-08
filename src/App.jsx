@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
+import { CartProvider } from './context/CartContext'
 import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
 import DetalleProducto from './pages/DetalleProducto'
@@ -17,27 +18,29 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Inicio />} />
-          <Route path='/productos' element={<Productos />} />
-          <Route path='/productos/:id' element={<DetalleProducto />} />
-          <Route path='/productos/:categoria/:id' element={<DetalleProducto />} />
-          {/* Ruta Protegida - Solo Usuarios */}
-          <Route path='/iniciar-sesion' element={<IniciarSesion />} />
-          <Route path='/usuario/pagar' element={
-            <RutaProtegida>
-              <Pagar />
-            </RutaProtegida>
-          } />
-          {/* Ruta Protegiada - Solo Administrador */}
-          <Route path='/dashboard' element={
-            <RutaProtegida soloAdmin={true}>
-              <Dashboard />
-            </RutaProtegida>
-          } />
-        </Routes>
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Inicio />} />
+            <Route path='/productos' element={<Productos />} />
+            <Route path='/productos/:id' element={<DetalleProducto />} />
+            <Route path='/productos/:categoria/:id' element={<DetalleProducto />} />
+            {/* Ruta Protegida - Solo Usuarios */}
+            <Route path='/iniciar-sesion' element={<IniciarSesion />} />
+            <Route path='/usuario/pagar' element={
+              <RutaProtegida>
+                <Pagar />
+              </RutaProtegida>
+            } />
+            {/* Ruta Protegiada - Solo Administrador */}
+            <Route path='/dashboard' element={
+              <RutaProtegida soloAdmin={true}>
+                <Dashboard />
+              </RutaProtegida>
+            } />
+          </Routes>
+          <Footer />
+        </CartProvider>
       </AuthProvider>
     </>
   )

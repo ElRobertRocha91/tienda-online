@@ -44,4 +44,38 @@
 
 .dashboard {
     padding-left: 25px;
+    padding-right: 25px;
+}
+
+.contenedorCarrito {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carrito {
+    padding-right: 10px;
+}
+
+.iconoCarrito {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contador {
+    position: relative;
+    top: -5px;
+    right: -3px;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

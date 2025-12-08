@@ -1,13 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useCartContext } from "../context/CartContext";
 
-function Carrito({ carrito, setCarrito }) {
+function Carrito() {
+    const { carrito, vaciarCarrito, agregarCantidad, quitarCantidad, total } = useCartContext();
     const navigate = useNavigate();
-
-    const vaciarCarrito = () => {
-        setCarrito([]);
-    }
-
-    const total = carrito.reduce((sum, item) => sum + Number(item.precio), 0);
 
     const irAPagar = () => {
     navigate("/usuario/pagar", { state: { carrito } });
@@ -25,6 +21,9 @@ function Carrito({ carrito, setCarrito }) {
                         {carrito.map((item) => (
                             <div key={item.id}>
                                 {item.nombre} - ${Number(item.precio).toFixed(3)}
+                                (Cantidad: {item.cantidad || 1})
+                                <button onClick={() => quitarCantidad(item.id)}>-</button>
+                                <button onClick={() => agregarCantidad(item.id)}>+</button>
                             </div>
                         ))}
                         <div style={{ marginTop: '15px', padding: '10px', backgroundColor: '#ff55', fontWeight: 'bold' }}>

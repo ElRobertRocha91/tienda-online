@@ -1,24 +1,19 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { useCartContext } from "../context/CartContext";
 
 function Pagar() {
   const { usuario, cerrarSesion } = useAuthContext();
-  const location = useLocation();
+  const { carrito, total, vaciarCarrito } = useCartContext();
   const navigate = useNavigate();
 
-  // Datos del carrito
-  const carrito = location.state?.carrito || [];
-  // Calculo del total
-  const total = carrito.reduce(
-    (suma, producto) => suma + Number(producto.precio),
-    0
-  );
-
+  // Obtengo el Token-Usuario
   const tokenActual = localStorage.getItem('authToken');
 
   // Función para finalizar compra
   const comprar = () => {
     alert("¡Compra realizada con éxito!");
+    vaciarCarrito();
     navigate("/productos");
   };
 
@@ -27,6 +22,7 @@ function Pagar() {
       <div>
         <h2>{usuario.nombre}</h2>
         <p>Email: {usuario.email}</p>
+        <strong>Token: <code>{tokenActual}</code></strong>
         <button onClick={cerrarSesion}>Cerrar sesión</button>
         <hr />
       </div>
