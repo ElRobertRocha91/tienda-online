@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [usuario, setUsuario] = useState(null);
+    const [cargando, setCargando] = useState(true);
 
     // TOKEN - Validación en la carga de la aplicación
     useEffect(() => {
@@ -16,16 +17,18 @@ export function AuthProvider({ children }) {
                 email: emailGuardado || ""
             });
         }
+        setCargando(false);
     }, []);
 
-    const iniciarSesion = (username) => {
+    const iniciarSesion = (username, emailIngresado) => {
         const token = `face-token-${username}`;
         localStorage.setItem("authToken", token);
+        localStorage.setItem("authEmail", emailIngresado);
 
-        const emailGuardado = localStorage.getItem("authEmail");
+        // const emailGuardado = localStorage.getItem("authEmail");
         setUsuario({
             nombre: username,
-            email: emailGuardado || ""
+            email: emailIngresado || ""
         });
     };
 
@@ -40,7 +43,8 @@ export function AuthProvider({ children }) {
         iniciarSesion,
         cerrarSesion,
         isAuthenticated: !!usuario, 
-        esAdmin: usuario?.nombre === 'admin'
+        esAdmin: usuario?.nombre === 'admin',
+        cargando
     }
 
     return (

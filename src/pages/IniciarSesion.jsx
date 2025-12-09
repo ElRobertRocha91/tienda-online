@@ -14,12 +14,12 @@ function IniciarSesion() {
         e.preventDefault();
         if (formulario.nombre === "admin" && formulario.email === "1234@admin") {
             localStorage.setItem("authEmail", formulario.email);
-            iniciarSesion("admin");
+            iniciarSesion("admin", formulario.email);
             navigate("/dashboard");
 
         } else if (formulario.nombre && formulario.email && formulario.nombre !== "admin") {
             localStorage.setItem("authEmail", formulario.email);
-            iniciarSesion(formulario.nombre);
+            iniciarSesion(formulario.nombre, formulario.email);
             // Si venía del carrito, redirige a pagar
             if (ubicacion.state?.carrito) {
                 navigate('/usuario/pagar', { state: { carrito: ubicacion.state.carrito } });
