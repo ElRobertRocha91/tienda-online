@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
         if (token) {
             const username = token.replace("face-token-", "");
             setUsuario({
-                nombre: username,
+                password: username,
                 email: emailGuardado || ""
             });
         }
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
 
         // const emailGuardado = localStorage.getItem("authEmail");
         setUsuario({
-            nombre: username,
+            password: username,
             email: emailIngresado || ""
         });
     };
@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
         iniciarSesion,
         cerrarSesion,
         isAuthenticated: !!usuario, 
-        esAdmin: usuario?.nombre === 'admin',
+        esAdmin: usuario?.password === 'admin',
         cargando
     }
 

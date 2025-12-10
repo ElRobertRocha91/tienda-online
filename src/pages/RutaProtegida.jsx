@@ -13,7 +13,7 @@ function RutaProtegida({ children, soloAdmin = false }) {
     return <Navigate to="/iniciar-sesion" state={location.state} replace />;
   }
 
-  if (soloAdmin && usuario.nombre !== "admin") {
+  if (soloAdmin && usuario.password !== "admin") {
     return <Navigate to="/productos" replace />;
   }
   return children;

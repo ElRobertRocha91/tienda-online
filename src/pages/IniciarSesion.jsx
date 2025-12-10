@@ -8,18 +8,18 @@ function IniciarSesion() {
     const navigate = useNavigate();
     const ubicacion = useLocation();
 
-    const [formulario, setFormulario] = useState({ nombre: '', email: '' });
+    const [formulario, setFormulario] = useState({ password: '', email: '' });
 
     const manejarEnvio = (e) => {
         e.preventDefault();
-        if (formulario.nombre === "admin" && formulario.email === "1234@admin") {
+        if (formulario.password === "admin" && formulario.email === "1234@admin") {
             localStorage.setItem("authEmail", formulario.email);
             iniciarSesion("admin", formulario.email);
             navigate("/dashboard");
 
-        } else if (formulario.nombre && formulario.email && formulario.nombre !== "admin") {
+        } else if (formulario.password && formulario.email && formulario.password !== "admin") {
             localStorage.setItem("authEmail", formulario.email);
-            iniciarSesion(formulario.nombre, formulario.email);
+            iniciarSesion(formulario.password, formulario.email);
             // Si venía del carrito, redirige a pagar
             if (ubicacion.state?.carrito) {
                 navigate('/usuario/pagar', { state: { carrito: ubicacion.state.carrito } });
@@ -34,22 +34,22 @@ function IniciarSesion() {
 
     return (
         <main className={styles.pageFormulario}>
-            <h1>Inicia sesión para continuar</h1>
+            {/* <h1>Inicia sesión para continuar</h1> */}
             <div className={styles.tarjetaFormulario}>
                 <form onSubmit={manejarEnvio} className={styles.formulario}>
-                    <h3>Iniciar Sesión</h3>
-                    <input
-                        type="text"
-                        placeholder="Nombre completo"
-                        value={formulario.nombre}
-                        onChange={(e) => setFormulario({ ...formulario, nombre: e.target.value })}
-                        required
-                    />
+                    <h1 className={styles.titleLogin}>Iniciar Sesión</h1>
                     <input
                         type="email"
                         placeholder="Email"
                         value={formulario.email}
                         onChange={(e) => setFormulario({ ...formulario, email: e.target.value })}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={formulario.password}
+                        onChange={(e) => setFormulario({ ...formulario, password: e.target.value })}
                         required
                     />
                     <div className={styles.cajaBoton}>

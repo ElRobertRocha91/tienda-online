@@ -7,7 +7,7 @@
 }
 
 .tarjetaFormulario {
-    padding: 20px;
+    padding: 30px;
     border: solid 2px black;
     border-radius: 15px;
     
@@ -21,12 +21,47 @@
     width: 400px;
 }
 
+.titleLogin {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
 .cajaBoton {
     display: flex;
     justify-content: center;
+    justify-items: center;
+    padding-top: 15px;
 }
 
 .cajaBoton button {
     margin-left: 20px;
     margin-right: 20px;
+    padding: 6px;
+    border-radius: 5px;
+    background: black;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cajaBoton button:hover {
+    background: #fff;
+    color: black;
+}
+
+@media (max-width: 500px) {
+    .formulario {
+        width: 300px;
+        height: auto;
+    }
+
+    .cajaBoton {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cajaBoton button {
+        margin-left: 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
 }
