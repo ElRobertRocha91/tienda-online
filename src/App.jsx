@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { ProductsProvicer } from './context/ProductsContext'
@@ -15,6 +14,8 @@ import EliminarProducto from './components/EliminarProducto'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import './App.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 
@@ -52,8 +53,17 @@ function App() {
                   <EliminarProducto />
                 </RutaProtegida>
               } />
+              <Route path='*' element={<Navigate to="/" replace />} />
             </Routes>
             <Footer />
+            <ToastContainer
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              closeOnClick
+              draggable
+              pauseOnHover
+            />
           </ProductsProvicer>
         </CartProvider>
       </AuthProvider>
