@@ -1,9 +1,43 @@
+.titulo {
+    margin-bottom: 0px;
+}
+
+.containerBusqueda {
+    padding: 0px;
+}
+
+.flexBusqueda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.labelBusqueda {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.inputBusqueda {
+    width: 400px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: #bbbbbbf5;
+}
+
+.inputBusqueda::placeholder {
+    text-align: center;
+    font-style: oblique;
+    color: black;
+}
+
 .lista {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
-    width: 100%;
-    padding-left: 0px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .item {
@@ -12,8 +46,135 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.nombreProducto {
+    margin: 0px;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.precioProducto {
+    font-size: 18px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0px;
+    margin-top: 5px;
+    color: black;
+    background: rgb(148, 235, 8);
 }
 
 .link {
-    background-color: black;
+    border-radius: 5px;
+    background: black;
+    color: #fff;
+    margin: 10px;
+    padding: 5px;
+    width: 50%;
+    cursor: pointer;
+}
+
+.link:hover {
+    background: #fff;
+    color: black;
+}
+
+.compra {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    width: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.compra:hover {
+    background: black;
+    color: #fff;
+}
+
+.botonAdmin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.editar {
+    background: #c3ee06;
+    color: black;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.editar:hover {
+    background: #a9d87d;
+}
+
+.eliminar {
+    background: rgb(236, 33, 33);
+    color: #fff;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.eliminar:hover {
+    background: rgb(212, 82, 82);
+}
+
+.cardPaginado {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding-bottom: 10px;
+}
+
+.botonPaginado {
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.botonPaginado:hover {
+    background: black;
+    color: #fff;
+}
+
+.activo {
+    background: black;
+    color: #fff;
+}
+
+.inactivo {
+    background: #fff;
+}
+
+@media (max-width: 500px) {
+    .link {
+        width: 80%;
+    }
+
+    .compra {
+        width: 80%;
+    }
+}
+
+@media (max-width: 450px) {
+    .inputBusqueda {
+        width: 300px;
+    }
 }

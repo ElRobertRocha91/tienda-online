@@ -1,34 +1,47 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { useAuthContext } from "../context/AuthContext";
 import { useProducts } from "../context/ProductsContext";
 import Loading from "../components/Loading";
-import Carrito from "./Carrito";
+// import Carrito from "./Carrito";
 import styles from "../styles/pages/Productos.module.css";
 
 function Productos() {
     const { productos, cargando, error } = useProducts();
-    // const [productos, setProductos] = useState([]);
-    // const [cargando, setCargando] = useState(true);
-    // const [error, setError] = useState(null);
     const { agregarAlCarrito } = useCartContext();
     const navigate = useNavigate();
     const { esAdmin } = useAuthContext();
+    const [paginaActual, setPaginaActual] = useState(1);
+    const [busqueda, setBusqueda] = useState("");
 
-    // useEffect(() => {
-    //     fetch('https://68ed704ddf2025af780033c1.mockapi.io/api/productos')
-    //         .then((respuesta) => respuesta.json())
-    //         .then((datos) => {
-    //             setProductos(datos);
-    //             setCargando(false);
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error: ', error);
-    //             setError('Hubo un problema al cargar los productos.');
-    //             setCargando(false);
-    //         });
-    // }, []);
+    // Paginado
+    const productosPorPagina = 6;
+
+    const productosFiltrados = productos.filter(
+        (producto) =>
+            producto.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+            (producto.categoria &&
+                producto.categoria.toLowerCase().includes(busqueda.toLowerCase()))
+    );
+
+    const indiceUltimoProducto = paginaActual * productosPorPagina;
+    const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
+    const productosActuales = productosFiltrados.slice(indicePrimerProducto, indiceUltimoProducto);
+
+    // Cambiar de página
+    const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
+    const cambiarPagina = (numeroPagina) => setPaginaActual(numeroPagina);
+
+    // Resetear a página 1 con búsquedas
+    const manejarBusqueda = (e) => {
+        setBusqueda(e.target.value);
+        setPaginaActual(1);
+    };
+
+    const manejarDetalle = (producto) => {
+        navigate(`/productos/${producto.categoria || "sin-categoria"}/${producto.id}`, { state: { producto } })
+    }
 
     const manejarEliminar = (producto) => {
         // Navegar a la página de confirmación de eliminación
@@ -49,30 +62,39 @@ function Productos() {
 
     return (
         <main>
-            <h1>Lista de Productos</h1>
+            <h1 className={styles.titulo}>Lista de Productos</h1>
             <br />
+            {/* Barra de búsqueda */}
+            <div className={styles.containerBusqueda}>
+                <div className={styles.flexBusqueda}>
+                    <label className={styles.labelBusqueda}>Buscar productos</label>
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre o categoría..."
+                        className={styles.inputBusqueda}
+                        value={busqueda}
+                        onChange={manejarBusqueda}
+                    />
+                </div>
+            </div>
             <ul className={styles.lista}>
-                {productos.map((producto) => (
+                {productosActuales.map((producto) => (
                     <li key={producto.id} className={styles.item}>
                         <br />
-                        <img src={producto.avatar} alt={producto.nombre} width="200px" />
-                        <br />
-                        {producto.nombre}
-                        <br />
-                        Precio: ${producto.precio}
-                        <br />
-                        <button className={styles.link}>
-                            <Link to={`/productos/${producto.categoria || "sin-categoria"}/${producto.id}`} state={{ producto }}>Más detalle</Link>
-                        </button>
-                        <br />
-                        <button onClick={() => agregarAlCarrito(producto)}>Comprar</button>
-                        {/* Botón Editar - SOLO visible para el admin */}
+                        <img src={producto.avatar} alt={producto.nombre} width="300px" height="260px" />
+                        <h3 className={styles.nombreProducto}>{producto.nombre}</h3>
+                        <p className={styles.precioProducto}>Precio: ${producto.precio}</p>
+                        {/* Botón Visible */}
+                        <button className={styles.link} onClick={() => manejarDetalle(producto)}>Ver detalle</button>
+                        <button onClick={() => agregarAlCarrito(producto)} className={styles.compra}>Comprar</button>
+
+                        {/* Botón Editar y Eliminar - SOLO visible para el admin */}
                         {esAdmin && (
-                            <div>
-                                <button onClick={() => manejarEditar(producto)}>
+                            <div className={styles.botonAdmin}>
+                                <button onClick={() => manejarEditar(producto)} className={styles.editar}>
                                     Editar
                                 </button>
-                                <button onClick={() => manejarEliminar(producto)}>
+                                <button onClick={() => manejarEliminar(producto)} className={styles.eliminar}>
                                     Eliminar
                                 </button>
                             </div>
@@ -80,7 +102,21 @@ function Productos() {
                     </li>
                 ))}
             </ul>
-            <Carrito />
+            {/* Paginador */}
+            {productosFiltrados.length > productosPorPagina && (
+                <div className={styles.cardPaginado}>
+                    {Array.from({ length: totalPaginas }, (_, index) => (
+                        <button
+                            key={index + 1}
+                            className={`${styles.botonPaginado} ${paginaActual === index + 1 ? styles.activo : styles.inactivo}`}
+                            onClick={() => cambiarPagina(index + 1)}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                </div>
+            )}
+            {/* <Carrito /> */}
         </main>
     )
 }
