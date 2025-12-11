@@ -10,7 +10,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     const totalItemsCarrito = carrito.reduce((total, item) => total + item.cantidad, 0);
-    console.log(totalItemsCarrito);
+    
     const manejarCerrarSesion = () => {
         navigate("/productos");
 
@@ -42,22 +42,19 @@ function Navbar() {
                         </div>
                     </Link></li>
                     {/* Enlace para ADMIN - Solo visible para el Admin */}
-                    {/* {usuario?.nombre === "admin" && (
-                        <li><Link to="/formulario-producto">Agregar Producto</Link></li>
-                    )} */}
                     {/* LOGIN - USUARIO - ADMIN */}
                     <li>
                         {
                             isAuthenticated ? (
                                 <div className={styles.user}>
                                     <div className={styles.usuario}>
-                                        <span>Hola, {usuario.nombre}</span>
+                                        <span>Hola, {usuario.password}</span>
                                         {/* <span>Carrito: ({carrito.length})</span> */}
                                         {/* Enlace a el Dashboard y a Agregar Producto solo para Admin */}
-                                        {usuario.nombre === "admin" && (
+                                        {usuario.password === "admin" && (
                                             <Link to="/dashboard" className={styles.dashboard}>Dashboard</Link>
                                         )}
-                                        {usuario?.nombre === "admin" && (
+                                        {usuario?.password === "admin" && (
                                             <Link to="/formulario-producto">Agregar Producto</Link>
                                         )}
                                     </div>
