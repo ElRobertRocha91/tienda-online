@@ -3,31 +3,112 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100dvh;
+    /* height: 100dvh; */
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(216, 202, 120);
+    width: 100%;
+}
+
+
+.rojo {
+    padding: 7px;
+    border-radius: 5px;
+    background-color: rgb(233, 219, 98);
+    cursor: pointer;
+}
+
+.rojo:hover {
+    background-color: rgb(255, 230, 3);
+}
+
+.seccionAcciones {
+    height: 65vh;
+    padding-top: 20px;
 }
 
 .acciones {
     display: flex;
+    justify-items: center;
+    justify-content: space-around;
+    gap: 25px;
+    padding-top: 20px;
 }
 
 
-.link{
+.link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     padding: 5px 10px;
+    background: rgb(2, 139, 252);
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    border: solid 1px black;
+    transition: 0.4s;
+    overflow: hidden;
 }
 
-.verde {
-background-color: green;
-padding: 5px;
-border-radius: 5px;
-margin: 0 0;
+.link:hover {
+    transition-delay: 0.1s;
+    transform: scale(1.1);
 }
 
-.celeste {
-background-color: rgb(77, 187, 190);
-padding: 5px;
-border-radius: 5px;
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 80px;
+    color: white;
 }
 
-.rojo {
-background-color: red;
+.botonTarjeta {
+    color: white;
+    background-color: rgb(0, 113, 128);
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(22, 22, 22);
+    margin: 0 0;
+    cursor: pointer;
+}
+
+@media (max-width: 1035px) {
+    .link {
+        width: 250px;
+    }
+}
+
+@media (max-width: 950px) {
+    .link {
+        width: 200px;
+    }
+    .token {
+        display: none;
+    }
+}
+
+@media (max-width: 750px) {
+    .acciones {
+        flex-direction: column;
+    }
+
+    .seccionAcciones {
+        height: auto;
+    }
+
+    .link {
+        width: 300px;
+    }
+}
+
+@media (max-width: 540px) {
+    .nombreSesionAdmin {
+        display: none;
+    }
 }

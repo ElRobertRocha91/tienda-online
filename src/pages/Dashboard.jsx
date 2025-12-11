@@ -1,6 +1,9 @@
 import { useAuthContext } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/pages/Dashboard.module.css";
+import { BsCloudArrowUp } from "react-icons/bs";
+import { BsBoxes } from "react-icons/bs";
+import { BsPen } from "react-icons/bs";
 
 function Dashboard() {
     const { usuario, cerrarSesion } = useAuthContext();
@@ -14,41 +17,58 @@ function Dashboard() {
         navigate('/formulario-producto');
     };
 
+    const manejarProductos = () => {
+        navigate('/productos');
+    };
+
     return (
         <main>
             <div className={styles.dashboard}>
-                <h1>Dashboard Administrativo</h1>
-                <div>
-                    <p>
-                        <strong>Sesión iniciada como:</strong> {usuario.nombre}
-                    </p>
-
+                <div className={styles.nav}>
+                    <h1>Dashboard</h1>
+                    <p className={styles.nombreSesionAdmin}><strong>Sesión iniciada como:</strong> {usuario.email}</p>
                     {/* Sección del Token */}
-                    <div>
-                        <strong>Token de autenticación</strong>
-                        <br />
+                    <div className={styles.token}>
+                        <strong>Token de autenticación: </strong>
                         <code>{tokenActual}</code>
                     </div>
-
-                    {/* Sección de acciones Admin */}
-                    <div>
-                        <h3>Acciones:</h3>
+                    {/* Botón cerrar sesión */}
+                    <button onClick={cerrarSesion} className={styles.rojo}>Cerrar sesión</button>
+                </div>
+                {/* Sección de acciones Admin */}
+                <section id="acciones">
+                    <div className={styles.seccionAcciones}>
+                        <h2>Acciones</h2>
                         <div className={styles.acciones}>
                             <div className={styles.link}>
-                                <button onClick={manejarAgregarProducto} className={styles.verde}>
+                                <div className={styles.icon}>
+                                    <BsCloudArrowUp />
+                                    {/* <WiCloudUp /> */}
+                                </div>
+                                <button onClick={manejarAgregarProducto} className={styles.botonTarjeta}>
                                     Agregar nuevo producto
                                 </button>
                             </div>
                             <div className={styles.link}>
-                                <Link to="/productos" className={styles.celeste}>Ver / Editar / Eliminar productos</Link>
+                                <div className={styles.icon}>
+                                    <BsPen />
+                                </div>
+                                <button onClick={manejarProductos} className={styles.botonTarjeta}>
+                                    Editar / Eliminar productos
+                                </button>
+                            </div>
+                            <div className={styles.link}>
+                                <div className={styles.icon}>
+                                    <BsBoxes />
+                                </div>
+                                <button className={styles.botonTarjeta}>
+                                    Stock de productos
+                                </button>
                             </div>
                         </div>
                     </div>
                     <hr />
-
-                    {/* Botón cerrar sesión */}
-                    <button onClick={cerrarSesion} className={styles.rojo}>Cerrar sesión</button>
-                </div>
+                </section>
             </div>
         </main>
     )
