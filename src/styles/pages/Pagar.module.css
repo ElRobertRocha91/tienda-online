@@ -1,0 +1,118 @@
+.pagePagar {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.datoCliente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.compra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.tablaCompra {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    /* centra el contenido en todas las celdas */
+    table-layout: fixed;
+    /* fuerza columnas parejas */
+}
+
+.tablaCompra td {
+    border: 1px solid #000000;
+    padding: 10px;
+    vertical-align: middle;
+    /* centra verticalmente */
+}
+
+.tablaCompra th {
+    border: 1px solid black;
+}
+
+.colImagen {
+    width: 150px;
+    /* ancho fijo para la columna de imagen */
+    text-align: center;
+}
+
+.colImagen img {
+    display: block;
+    margin: 0 auto;
+    /* asegura que quede centrada */
+}
+
+.btn {
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background: #fff;
+    cursor: pointer;
+    margin: 10px 10px;
+}
+
+.btn:hover {
+    background: black;
+    color: #fff;
+}
+
+.pagar {
+    font-size: 25px;
+    text-align: center;
+}
+
+.listBtn {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 20px;
+}
+
+.celeste {
+    background: #02f7ff;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rojo {
+    background: rgb(233, 119, 119);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.verde {
+    background: rgb(121, 199, 4);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 670px) {
+    .tablaCompra {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        /* agrega scroll horizontal */
+        white-space: nowrap;
+        /* evita que las celdas se corten */
+    }
+}
+
+@media (max-width:450px) {
+    .listBtn {
+        flex-direction: column;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
