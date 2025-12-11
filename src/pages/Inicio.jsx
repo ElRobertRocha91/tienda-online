@@ -9,7 +9,7 @@ function Inicio() {
                     <div className={styles.card}>
                         <h2>Bienvenidos a Tienda Online</h2>
                         <h2>El mejor sitio para hacer tus compras</h2>
-                        <h3>Tenemos los mejores precios para que puedas llevarte el productos que estas buscando.</h3>
+                        <h3>Tenemos los mejores precios para que puedas llevarte los productos que estas buscando.</h3>
                     </div>
                 </div>
                 <br />
