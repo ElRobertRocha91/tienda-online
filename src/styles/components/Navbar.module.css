@@ -5,6 +5,7 @@
     padding-left: 100px;
     padding-right: 20px;
     background-color: black;
+    position: relative;
 }
 
 .title {
@@ -15,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-items: center;
+    position: relative;
 }
 
 .nav li {
@@ -40,6 +42,18 @@
 .session {
     /* padding: alto ancho ;*/
     padding: 5px 6px;
+    border-radius: 7px;
+    border: 2px solid white;
+    background: black;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.session:hover {
+    color: black;
+    background: white;
+    border: 2px solid #fff;
 }
 
 .dashboard {
@@ -79,3 +93,124 @@
     align-items: center;
     justify-content: center;
 }
+
+/* === MENU RESPONSIVE === */
+.button {
+    display: none;
+    align-content: center;
+    background: #000000;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.button:hover {
+    box-shadow: 0 0 5px #fff, 0 0 5px #fff;
+}
+
+.menu {
+    color: #fff;
+    padding: 2px;
+}
+
+.navList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #000000;
+    border-bottom: 1px solid rgb(77, 79, 97);
+    z-index: 999;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.10s ease, opacity 0.5s ease;
+}
+
+.open {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.list {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.list:hover {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+}
+
+@media (max-width: 710px) {
+    .button {
+        display: flex;
+        margin-right: 20px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .header {
+        padding-left: 50px;
+    }
+
+    .contenedorCarrito {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .contenedorCarrito:hover {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+    }
+
+    .dashboard {
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .dashboard:hover {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+    }
+
+    .user {
+        flex-direction: column;
+    }
+
+    .usuario {
+        flex-direction: column;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .session {
+        margin-bottom: 15px;
+        margin-top: 2px;
+        width: 85%;
+        background: #fff;
+        color: black;
+    }
+
+    .session:hover {
+        color: #fff;
+        background: black;
+        border: 2px solid #fff;
+    }
+}
+
+@media (max-width: 450px) {
+    .header {
+        padding-left: 20px;
+    }
+
+    .button {
+        margin-right: 0px;
+    }
+}
+
+/* ======================= */
