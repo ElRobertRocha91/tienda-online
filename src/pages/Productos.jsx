@@ -81,7 +81,7 @@ function Productos() {
                 {productosActuales.map((producto) => (
                     <li key={producto.id} className={styles.item}>
                         <br />
-                        <img src={producto.avatar} alt={producto.nombre} width="300px" height="260px" />
+                        <img src={producto.avatar} alt={producto.nombre} className={styles.image} />
                         <h3 className={styles.nombreProducto}>{producto.nombre}</h3>
                         <p className={styles.precioProducto}>Precio: ${producto.precio}</p>
                         {/* Botón Visible */}
