@@ -16,7 +16,7 @@ function DetalleProducto() {
         )
     }
     return (
-        <main className={styles.pageDetalle}>
+        <div className={styles.pageDetalle}>
             <section id="detalle">
                 <div className={styles.cajaDetalle}>
                     <div className={styles.tarjetaDetalle}>
@@ -35,7 +35,7 @@ function DetalleProducto() {
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
     )
 }
 

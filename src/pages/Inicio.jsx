@@ -3,7 +3,7 @@ import styles from "../styles/pages/Inicio.module.css";
 
 function Inicio() {
     return (
-        <main className={styles.home}>
+        <div className={styles.home}>
             <section id="inicio">
                 <div>
                     <div className={styles.card}>
@@ -16,7 +16,7 @@ function Inicio() {
                 <br />
                 <Link to="/productos" className={styles.homeLink}>Ver Productos</Link>
             </section>
-        </main>
+        </div>
     )
 }
 

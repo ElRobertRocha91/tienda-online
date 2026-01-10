@@ -61,7 +61,7 @@ function Productos() {
     }
 
     return (
-        <main>
+        <div>
             <h1 className={styles.titulo}>Lista de Productos</h1>
             <br />
             {/* Barra de búsqueda */}
@@ -117,7 +117,7 @@ function Productos() {
                 </div>
             )}
             {/* <Carrito /> */}
-        </main>
+        </div>
     )
 }
 

@@ -33,7 +33,7 @@ function IniciarSesion() {
     };
 
     return (
-        <main className={styles.pageFormulario}>
+        <div className={styles.pageFormulario}>
             {/* <h1>Inicia sesión para continuar</h1> */}
             <div className={styles.tarjetaFormulario}>
                 <form onSubmit={manejarEnvio} className={styles.formulario}>
@@ -61,7 +61,7 @@ function IniciarSesion() {
                     </div>
                 </form>
             </div>
-        </main>
+        </div>
     );
 }
 

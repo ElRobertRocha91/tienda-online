@@ -22,7 +22,6 @@ function Dashboard() {
     };
 
     return (
-        <main>
             <div className={styles.dashboard}>
                 <div className={styles.nav}>
                     <h1>Dashboard</h1>
@@ -70,7 +69,6 @@ function Dashboard() {
                     <hr />
                 </section>
             </div>
-        </main>
     )
 }
 
