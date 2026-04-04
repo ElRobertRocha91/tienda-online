@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
 }
 
 .cajaDetalle {
@@ -10,12 +10,18 @@
     justify-content: center;
     align-content: center;
     justify-items: center;
+    margin-top: 50px;
 }
 
 .tarjetaDetalle {
     padding: 20px;
     border: solid 2px black;
     border-radius: 15px;
+}
+
+.tituloDetalle {
+    margin-top: 0px;
+    font-size: xx-large;
 }
 
 .tarjetaDetalle li {
@@ -41,12 +47,9 @@
 }
 
 .precioDetalle {
-    font-size: 30px;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
+    font-size: 40px;
+    letter-spacing: 2px;
     padding: 10px;
-    color: black;
-    background: rgb(148, 235, 8);
 }
 
 .nombreDetalle {
@@ -70,11 +73,13 @@
     border: solid 2px black;
 }
 
-@media (max-width: 760px) {
-    .cajaDetalle {
-        max-height: 500px;
+@media (max-width:900px) {
+    .imageDetalle {
+        width: 300px;
     }
+}
 
+@media (max-width: 760px) {
     .flexDetalle {
         flex-direction: column;
         align-items: center;
@@ -96,4 +101,27 @@
         margin-bottom: 0px;
     }
 
+}
+
+@media (max-width: 480px) {
+    .pageDetalle {
+        height: auto;
+    }
+
+    .cajaDetalle {
+        max-width: 450px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .tarjetaDetalle {
+        margin-top: 35px;
+        margin-bottom: 35px;
+        height: auto;
+    }
+
+    .tituloDetalle {
+        margin-bottom: 0px;
+        font-size: xx-large;
+    }
 }
