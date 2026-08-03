@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { useCartContext } from "../context/CartContext";
 import styles from "../styles/components/Navbar.module.css";
 import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
 import { useState } from "react";
 
 function Navbar() {
@@ -30,12 +31,16 @@ function Navbar() {
 
     return (
         <header className={styles.header}>
-            <h2 className={styles.title}>Tienda Online</h2>
+            <div className={styles.navTitle}>
+                <div className={styles.iconoTienda}><FaShoppingBag /></div>
+                <h2 className={styles.title}>Tienda Online</h2>
+            </div>
+            {/* MENU DE NAVEGACIÓN */}
             <nav>
                 <ul className={styles.nav}>
-                    <li><Link to="/">Inicio</Link></li>
-                    <li><Link to="/productos">Productos</Link></li>
-                    <li><Link to="/usuario/pagar">
+                    <li><NavLink to="/" className={({ isActive }) => isActive ? styles.activo : ""}>Inicio</NavLink></li>
+                    <li><NavLink to="/productos" className={({ isActive }) => isActive ? styles.activo : ""}>Productos</NavLink></li>
+                    <li><NavLink to="/usuario/pagar" className={({ isActive }) => isActive ? styles.activo : ""}>
                         <div className={styles.contenedorCarrito}>
                             <span className={styles.carrito}>Carrito</span>
                             <div className={styles.iconoCarrito}>
@@ -47,7 +52,7 @@ function Navbar() {
                                 </div>
                             )}
                         </div>
-                    </Link></li>
+                    </NavLink></li>
                     {/* Enlace para ADMIN - Solo visible para el Admin */}
                     {/* LOGIN - USUARIO - ADMIN */}
                     <li>
@@ -55,20 +60,16 @@ function Navbar() {
                             isAuthenticated ? (
                                 <div className={styles.user}>
                                     <div className={styles.usuario}>
-                                        <span>Hola, {usuario.password}</span>
-                                        {/* <span>Carrito: ({carrito.length})</span> */}
                                         {/* Enlace a el Dashboard y a Agregar Producto solo para Admin */}
                                         {usuario.password === "admin" && (
-                                            <Link to="/dashboard" className={styles.dashboard}>Dashboard</Link>
+                                            <NavLink to="/dashboard" className={({ isActive }) => `${styles.dashboard} ${isActive ? styles.activo : "" }`}>Dashboard</NavLink>
                                         )}
-                                        {usuario?.password === "admin" && (
-                                            <Link to="/formulario-producto">Agregar Producto</Link>
-                                        )}
+                                        <span className={styles.name}>Hola, {usuario.password}</span>
                                     </div>
                                     <button onClick={manejarCerrarSesion} className={styles.session}>Cerrar Sesión</button>
                                 </div>
                             ) : (
-                                <Link to='/iniciar-sesion'>Iniciar Sesión</Link>
+                                <NavLink to='/iniciar-sesion' className={({ isActive }) => isActive ? styles.activo : ""}>Iniciar Sesión</NavLink>
                             )
                         }
                     </li>
@@ -106,15 +107,12 @@ function Navbar() {
                         {
                             isAuthenticated ? (
                                 <div className={styles.user}>
-                                    <div className={styles.usuario}>
-                                        <span className={styles.list}>Hola, {usuario.password}</span>
+                                    <div className={styles.usuario}>                                 
                                         {/* Enlace a el Dashboard y a Agregar Producto solo para Admin */}
                                         {usuario.password === "admin" && (
                                             <Link to="/dashboard" onClick={toggleMenu} className={styles.dashboard}>Dashboard</Link>
                                         )}
-                                        {usuario?.password === "admin" && (
-                                            <Link to="/formulario-producto" onClick={toggleMenu} className={styles.list}>Agregar Producto</Link>
-                                        )}
+                                        <span className={styles.list}>Hola, {usuario.password}</span>
                                     </div>
                                     <button onClick={manejarCerrarSesion} className={styles.session}>Cerrar Sesión</button>
                                 </div>
