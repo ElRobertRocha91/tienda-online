@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: space-around;
     /* padding-left: 100px;
-    padding-right: 20px; */
-    padding: 0 20px;
+    padding-right: 20px; 
+    padding: 0 20px; */
     background-color: black;
     position: fixed;
     top: 0;
@@ -187,9 +187,9 @@
         display: none;
     }
 
-    .header {
+    /* .header {
         padding-left: 50px;
-    }
+    } */
 
     .contenedorCarrito {
         display: flex;
@@ -237,9 +237,9 @@
 }
 
 @media (max-width: 450px) {
-    .header {
+    /* .header {
         padding-left: 20px;
-    }
+    } */
 
     .button {
         margin-right: 0px;
