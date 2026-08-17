@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { useCartContext } from "../context/CartContext";
 import styles from "../styles/pages/Pagar.module.css";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 function Pagar() {
   const { usuario, cerrarSesion } = useAuthContext();
-  const { carrito, total, vaciarCarrito, agregarCantidad, quitarCantidad } = useCartContext();
+  const { carrito, total, vaciarCarrito, agregarCantidad, quitarCantidad, eliminarDelCarrito } = useCartContext();
   const navigate = useNavigate();
 
   // Obtengo el Token-Usuario
@@ -13,73 +15,59 @@ function Pagar() {
 
   // Función para finalizar compra
   const comprar = () => {
-    alert("¡Compra realizada con éxito!");
-    vaciarCarrito();
-    navigate("/productos");
+    if (carrito.length === 0) {
+      toast.warn("Tu carrito está vacío.");
+    } else if (window.confirm("¿Confirmas la compra?")) {
+      toast.success("¡Compra realizada con éxito!");
+      vaciarCarrito();
+      navigate("/productos");
+    }
   };
 
   return (
     <div className={styles.pagePagar}>
-      <div className={styles.datoCliente}>
-        <h2>Cliente: {usuario.password}</h2>
-        <p>Email: {usuario.email}</p>
-        {/* <strong>Token: <code>{tokenActual}</code></strong>
-        <button onClick={cerrarSesion}>Cerrar sesión</button> */}
-      </div>
-      <hr />
-      <div>
-        <h2>Tu compra:</h2>
+      <div className={styles.containerPagar}></div>
+      <div className={styles.columnaCarrito}>
+        <h2 className={styles.titleCarrito}>Carrito de compras</h2>
         {carrito.length === 0 ? (
           <p>El carrito esta vacío</p>
         ) : (
-          <table className={styles.tablaCompra}>
-            <thead>
-              <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {carrito.map((producto) => (
-                <tr key={producto.id}>
-                  <td className={styles.colImagen}>
-                    <img
-                      src={producto.avatar}
-                      alt={producto.nombre}
-                      width="120"
-                      height="100"
-                    />
-                  </td>
-                  <td>
-                    <span>{producto.nombre}</span>
-                  </td>
-                  <td>
-                    <strong>${producto.precio}</strong>
-                  </td>
-                  <td>
-                    Cantidad: {producto.cantidad || 1}
-                  </td>
-                  <td>
+          <div className={styles.containerCarrito}>
+            {carrito.map((producto) => (
+              <div key={producto.id} className={styles.item}>
+                <img src={producto.avatar}
+                  alt={producto.nombre}
+                  width="100"
+                  height="100"
+                />
+                <div>
+                  <h5>{producto.nombre}</h5>
+                  <strong>${producto.precio}</strong>
+                </div>
+                <div className={styles.btnCantidad}>
+                  <div className={styles.cantidad}>
                     <button onClick={() => quitarCantidad(producto.id)} className={styles.btn}>-</button>
+                    <strong>{producto.cantidad || 1}</strong>
                     <button onClick={() => agregarCantidad(producto.id)} className={styles.btn}>+</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                  <div>
+                    <button onClick={() => eliminarDelCarrito(producto.id)} className={styles.btnEliminar}><RiDeleteBin6Line /></button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         )}
-        <div>
-          <h3 className={styles.pagar}>Total a pagar: ${total.toFixed(3)}</h3>
-        </div>
       </div>
-
-      <div className={styles.listBtn}>
-        <button onClick={comprar} className={styles.celeste}>Confirmar y Pagar</button>
-        <button onClick={vaciarCarrito} className={styles.rojo}>Vaciar Carrito</button>
-        <button onClick={() => navigate("/productos")} className={styles.verde}>Seguir Comprando</button>
+      <div className={styles.columnaPagar}>
+        <div className={styles.importePagar}>
+          <h3 className={styles.pagar}>Total: ${total.toFixed(3)}</h3>
+          <div>
+            <button onClick={comprar} className={styles.btnPagar}>Confirmar y Pagar</button>
+          </div>
+        </div>
+        <button onClick={vaciarCarrito} className={styles.btnVaciarCarrito}>Vaciar Carrito</button>
+        <button onClick={() => navigate("/productos")} className={styles.btnSeguirComprando}>Seguir Comprando</button>
       </div>
     </div>
   );
