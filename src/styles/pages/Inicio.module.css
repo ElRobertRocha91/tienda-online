@@ -1,16 +1,17 @@
 .home {
-    height: 95vh;
-    /* background-color: brown; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .card {
     border-radius: 15px;
     border: solid 3px black;
     padding: 25px;
+    margin-top: 50px;
+    width: auto;
     font-size: 25px;
 }
 
@@ -25,4 +26,22 @@
     background-color: #fff;
     color: black;
     border: solid 3px black;
+}
+
+/* Tablets */
+@media (min-width: 570px) and (max-width:900px) {
+    .card {
+        margin: 10px 20px;
+        font-size: 23px;
+    }
+}
+
+/* Dispositivos Movilés */
+@media (max-width: 570px) {
+    .card {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 45px;
+    }
 }
